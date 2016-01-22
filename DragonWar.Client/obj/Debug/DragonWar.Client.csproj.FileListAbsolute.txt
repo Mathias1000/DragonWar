@@ -17,3 +17,4 @@ C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Client\bin\Debug\DragonWar.Li
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Client\bin\Debug\DragonWar.Lib.pdb
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Client\obj\Debug\DragonWar.Client.exe
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Client\obj\Debug\DragonWar.Client.pdb
+C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Client\bin\Debug\MySql.Data.dll

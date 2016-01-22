@@ -4,3 +4,6 @@ C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\bin\Debug\DragonW
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\obj\Debug\DragonWar.MatchServer.csprojResolveAssemblyReference.cache
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\obj\Debug\DragonWar.MatchServer.exe
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\obj\Debug\DragonWar.MatchServer.pdb
+C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\bin\Debug\DragonWar.Lib.dll
+C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\bin\Debug\MySql.Data.dll
+C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.MatchServer\bin\Debug\DragonWar.Lib.pdb

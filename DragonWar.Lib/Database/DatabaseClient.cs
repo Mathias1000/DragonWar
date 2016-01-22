@@ -172,67 +172,71 @@ namespace DragonWar.Lib.Database
 
         #region Statements
 
-       /*
-    public  bool RunSQL(string sql, params MySqlParameter[] Parameters)
-    {
-        MySqlConnection Connection = null;
-        //DatabaseManager.CheckConnection(ref Connection);
-        StringBuilder sqlString = new StringBuilder();
-        // Fix for floating point problems on some languages
-        sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql, Parameters);
 
-        MySqlCommand sqlCommand = null;
-        try
+        public bool RunSQL(string sql, params MySqlParameter[] Parameters)
         {
-            sqlCommand = new MySqlCommand(sqlString.ToString(), Connection);
-            sqlCommand.Parameters.AddRange(Parameters);
-            sqlCommand.ExecuteNonQuery();
-            return true;
-        }
-        catch (MySqlException ex)
-        {
-         //   Log.WriteLine(LogLevel.Error, "Error With Query {0}", sqlCommand.CommandText);
-            return false;
-        }
-    }
-        
-            public  SQLResult Select(string sql, params MySqlParameter[] Parameters)
+
+            IsBussy = true;
+            UpdateLastActivity();
+            StringBuilder sqlString = new StringBuilder();
+            // Fix for floating point problems on some languages
+            sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql, Parameters);
+
+            MySqlCommand sqlCommand = null;
+            try
+            {
+                sqlCommand = new MySqlCommand(sqlString.ToString(), mConnection);
+                sqlCommand.Parameters.AddRange(Parameters);
+                sqlCommand.ExecuteNonQuery();
+                IsBussy = false;
+                return true;
+            }
+            catch (MySqlException ex)
             {
 
-                MySqlConnection Connection = null;
-              //  DatabaseManager.CheckConnection(ref Connection);
-                StringBuilder sqlString = new StringBuilder();
-                // Fix for floating point problems on some languages
-                sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql, Parameters);
+                DatabaseLog.Write(DatabaseLogType.QueryError, "Error With Query {0} {1}", sqlCommand.CommandText, ex.ToString());
+                IsBussy = false;
+                
+                return false;
+            }
+        }
 
-                MySqlCommand sqlCommand = new MySqlCommand(sqlString.ToString(), Connection);
+        public SQLResult Select(string sql, params MySqlParameter[] Parameters)
+        {
 
-                try
+            IsBussy = true;
+            UpdateLastActivity();
+            StringBuilder sqlString = new StringBuilder();
+            // Fix for floating point problems on some languages
+            sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql, Parameters);
+
+            MySqlCommand sqlCommand = new MySqlCommand(sqlString.ToString(), mConnection);
+
+            try
+            {
+
+
+                sqlCommand.Parameters.AddRange(Parameters);
+
+                using (var SqlData = sqlCommand.ExecuteReader())
                 {
-
-
-                    sqlCommand.Parameters.AddRange(Parameters);
-
-                    using (var SqlData = sqlCommand.ExecuteReader())
+                    using (var retData = new SQLResult())
                     {
-                        using (var retData = new SQLResult())
-                        {
-                            retData.Load(SqlData);
-                            retData.Count = retData.Rows.Count;
-
-                            return retData;
-                        }
+                        retData.Load(SqlData);
+                        retData.Count = retData.Rows.Count;
+                        IsBussy = false;
+                        return retData;
                     }
                 }
-                catch (SqlException ex)
-                {
-
-                    Log.WriteLine(LogLevel.Error, "Error With Query {0}", sqlCommand.CommandText);
-                }
-
-                return null;
             }
- */
+            catch (MySqlException ex)
+            {
+
+                DatabaseLog.Write(DatabaseLogType.QueryError, "Error With Query {0}", sqlCommand.CommandText, ex.ToString());
+            }
+            IsBussy = false;
+            return null;
+        }
     }
 }
 #endregion

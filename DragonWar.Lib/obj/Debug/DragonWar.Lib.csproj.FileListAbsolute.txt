@@ -3,3 +3,4 @@ C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Lib\bin\Debug\DragonWar.Lib.p
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Lib\obj\Debug\DragonWar.Lib.dll
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Lib\obj\Debug\DragonWar.Lib.pdb
 C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Lib\obj\Debug\DragonWar.Lib.csprojResolveAssemblyReference.cache
+C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Lib\bin\Debug\MySql.Data.dll
