@@ -1,0 +1,5 @@
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Utils\obj\Debug\DragonWar.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\Run\DragonWar.Utils.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\Run\DragonWar.Utils.pdb
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Utils\obj\Debug\DragonWar.Utils.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Utils\obj\Debug\DragonWar.Utils.pdb

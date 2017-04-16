@@ -1,7 +1,0 @@
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\obj\Debug\DragonWar.Service.csprojResolveAssemblyReference.cache
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\bin\Debug\DragonWar.Service.exe.config
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\bin\Debug\DragonWar.Service.exe
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\bin\Debug\DragonWar.Service.pdb
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\bin\Debug\MySql.Data.dll
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\obj\Debug\DragonWar.Service.exe
-C:\Users\Gothic\Desktop\lolemu\DragonWar\DragonWar.Service\obj\Debug\DragonWar.Service.pdb
