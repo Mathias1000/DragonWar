@@ -5,8 +5,6 @@
     {
         public virtual int DatabaseClientLifeTime { get; set; }  = 10;
 
-        public virtual int WorkThreadCount { get; set; }         = 4;
-
         public virtual int MaxPoolSize { get; set; }             = 10;
 
         public int MinPoolSize { get; set; }                     = 5;

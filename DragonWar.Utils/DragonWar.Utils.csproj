@@ -46,7 +46,6 @@
     <Compile Include="Attributes\GameServerModule.cs" />
     <Compile Include="Attributes\ServerModuleAttribute.cs" />
     <Compile Include="Attributes\ServerTaskAttribute.cs" />
-    <Compile Include="Config\Section\Game\GameMatchSection.cs" />
     <Compile Include="Config\Section\Network\ConnectSection.cs" />
     <Compile Include="Enum\GameInitalStage.cs" />
     <Compile Include="Enum\ServerTaskTimes.cs" />
@@ -80,8 +79,7 @@
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\DatabaseServer.cs" />
     <Compile Include="Database\DB.cs" />
-    <Compile Include="Database\PoolQuery.cs" />
-    <Compile Include="Database\QueryPool.cs" />
+    <Compile Include="Database\SQL_Query.cs" />
     <Compile Include="Database\DatabaseClient.cs" />
     <Compile Include="Database\DatabaseException.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
@@ -131,7 +129,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Config\Section\Game\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

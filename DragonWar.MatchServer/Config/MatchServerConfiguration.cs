@@ -18,6 +18,8 @@ namespace DragonWar.MatchServer.Config
 
         public int MaxPort { get; set; } = 5002;
 
+        public int WorkThreadCount { get; set; } = 4;
+
         public static MatchServerConfiguration Instance { get; set; }
 
         public static bool Initialize()

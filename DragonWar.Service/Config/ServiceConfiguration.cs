@@ -14,12 +14,13 @@ namespace DragonWar.Service.Config
 
         public ServerSection GameServer { get; set; } = new ServerSection();
 
+        public int WorkThreadCount { get; set; } = 4;
 
         public ServiceDatabaseSection DatabaseInfo { get; set; } = new ServiceDatabaseSection();
 
         public static ServiceConfiguration Instance { get; set; }
 
-
+        
         public static bool Initialize()
         {
             try

@@ -36,7 +36,7 @@ public class DB
 
     private static Database GenerateDatabase(DatabaseSection DBConf)
     {
-        return new Database(DBConf.SQLName, DBConf.MinPoolSize, DBConf.MaxPoolSize, DBConf.WorkThreadCount, DBConf.DatabaseClientLifeTime);
+        return new Database(DBConf.SQLName, DBConf.MinPoolSize, DBConf.MaxPoolSize, DBConf.DatabaseClientLifeTime);
     }
 
     public static DatabaseClient GetDatabaseClient() => mManager.GetClient();

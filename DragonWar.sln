@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonWar.Service", "DragonWar.Service\DragonWar.Service.csproj", "{B99F4501-6CEF-4A7A-AEBB-74995B204CF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonWar.LobbyClient", "DragonWar.LobbyClient\DragonWar.LobbyClient.csproj", "{85BD2C48-CC6E-43EB-87A1-4B5D9A0FA2A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonWar.MatchServer", "DragonWar.MatchServer\DragonWar.MatchServer.csproj", "{9353DB47-EAD4-454C-A0C1-68E1F3CFBDB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonWar.Utils", "DragonWar.Utils\DragonWar.Utils.csproj", "{846A1515-D001-430C-9205-647DE5633072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonWar.Game", "DragonWar.Game\DragonWar.Game.csproj", "{BCF52880-B066-4557-97AF-EDF3CA7432B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B99F4501-6CEF-4A7A-AEBB-74995B204CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B99F4501-6CEF-4A7A-AEBB-74995B204CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B99F4501-6CEF-4A7A-AEBB-74995B204CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B99F4501-6CEF-4A7A-AEBB-74995B204CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BD2C48-CC6E-43EB-87A1-4B5D9A0FA2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BD2C48-CC6E-43EB-87A1-4B5D9A0FA2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BD2C48-CC6E-43EB-87A1-4B5D9A0FA2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BD2C48-CC6E-43EB-87A1-4B5D9A0FA2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9353DB47-EAD4-454C-A0C1-68E1F3CFBDB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9353DB47-EAD4-454C-A0C1-68E1F3CFBDB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9353DB47-EAD4-454C-A0C1-68E1F3CFBDB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9353DB47-EAD4-454C-A0C1-68E1F3CFBDB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846A1515-D001-430C-9205-647DE5633072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846A1515-D001-430C-9205-647DE5633072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846A1515-D001-430C-9205-647DE5633072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846A1515-D001-430C-9205-647DE5633072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF52880-B066-4557-97AF-EDF3CA7432B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF52880-B066-4557-97AF-EDF3CA7432B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF52880-B066-4557-97AF-EDF3CA7432B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF52880-B066-4557-97AF-EDF3CA7432B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

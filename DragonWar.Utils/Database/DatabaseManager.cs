@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Threading;
-
+using DragonWar.Utils.Core;
 
 public class DatabaseManager : mServerTask
 {
@@ -15,17 +15,14 @@ public class DatabaseManager : mServerTask
    
     private int mClientIdGenerator;
     private object mSyncRoot;
-    private QueryPool mPool;
 
     private DatabaseServer mServer;
     private Database mDatabase;
 
     public override void Dispose()
     {
-        mPool.Dispose();
         mServer = null;
         mDatabase = null;
-
     }
     public int ClientCount
     {
@@ -42,7 +39,7 @@ public class DatabaseManager : mServerTask
         mDatabase = pDatabase;
 
 
-        mPool = new QueryPool(this, mDatabase.ThreadWorkCount);
+
         mSyncRoot = new object();
         base.Intervall = (ServerTaskTimes)(mDatabase.ClientLifeTime*1000 / 2);
     }
@@ -230,7 +227,8 @@ public class DatabaseManager : mServerTask
             sqlCommand = new SqlCommand(sqlString.ToString());
             sqlCommand.Parameters.AddRange(Parameters);
 
-            mPool.AddQuery(sqlCommand);
+            //Adding to ThreadPool :)
+            ServerMainBase.InternalInstance.AddTask(new SQL_Query(sqlCommand));
 
         }
         catch (SqlException ex)

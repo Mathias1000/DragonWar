@@ -11,7 +11,6 @@ namespace DragonWar.Utils.Database
         private readonly string mName;
         private readonly int mMinPoolSize;
         private readonly int mMaxPoolSize;
-        private readonly int mWorkCount;
         private readonly int mPoolLifeTime;
         #endregion
 
@@ -38,12 +37,6 @@ namespace DragonWar.Utils.Database
         {
             get { return mPoolLifeTime; }
         }
-        /// <summary>
- 
-        internal int ThreadWorkCount
-        {
-            get { return mWorkCount; }
-        }
 
         /// <summary>
         /// The maximum connection pool size for the database.
@@ -61,7 +54,7 @@ namespace DragonWar.Utils.Database
         /// <param name="sName">The name of the database.</param>
         /// <param name="minPoolSize">The minimum connection pool size for the database.</param>
         /// <param name="maxPoolSize"> The maximum connection pool size for the database.</param>
-        internal Database(string sName, int minPoolSize, int maxPoolSize,int WorkCount,int _mPoolLifeTime)
+        internal Database(string sName, int minPoolSize, int maxPoolSize,int _mPoolLifeTime)
         {
             if (sName == null || sName.Length == 0)
                 throw new ArgumentException(sName);
@@ -69,7 +62,6 @@ namespace DragonWar.Utils.Database
             mName = sName;
             mMinPoolSize = minPoolSize;
             mMaxPoolSize = maxPoolSize;
-            mWorkCount = WorkCount;
             mPoolLifeTime = _mPoolLifeTime;
         }
         #endregion

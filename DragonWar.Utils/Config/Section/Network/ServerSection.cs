@@ -9,8 +9,6 @@
 
         public virtual int NetworThreads { get; set; } = 5;
 
-        public virtual int ServerThreads { get; set; } = 5;
-
         public virtual ushort MaxConnection { get; set; } = 50;
 
         public virtual string ServerPassword { get; set; } = "Dubistdoof";

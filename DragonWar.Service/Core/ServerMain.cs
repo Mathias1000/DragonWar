@@ -50,7 +50,7 @@ namespace DragonWar.Service.Core
             }
 
 
-            InternalInstance.LoadThreadPool(ServiceConfiguration.Instance.DatabaseInfo.WorkThreadCount);
+            InternalInstance.LoadThreadPool(ServiceConfiguration.Instance.WorkThreadCount);
 
 
 
