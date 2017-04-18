@@ -41,6 +41,7 @@ public class Reflector
                 where attr != null
                 select new Pair<pAttribute, Type>(attr, type)).ToArray();
     }
+
     public Pair<pAttribute, MethodInfo>[] GetMethodsWithAttribute<pAttribute>()
     where pAttribute : Attribute
     {
@@ -49,6 +50,7 @@ public class Reflector
                 where attr != null
                 select new Pair<pAttribute, MethodInfo>(attr, method)).ToArray();
     }
+
     public static IEnumerable<Func<bool>> GetInitializerServerMethods(ServerType InitType)
     {
         return (from assembly in AppDomain.CurrentDomain.GetAssemblies().Where(assembly => !assembly.GlobalAssemblyCache)
@@ -100,6 +102,7 @@ public class Reflector
                 orderby serverModuleAttribute.InitializationStage descending
                 select (Action)Delegate.CreateDelegate(typeof(Action), method));
     }
+
     public static IEnumerable<Action> GetCleanupServerMethods(ServerType InitType)
     {
         return (from assembly in AppDomain.CurrentDomain.GetAssemblies().Where(assembly => !assembly.GlobalAssemblyCache)

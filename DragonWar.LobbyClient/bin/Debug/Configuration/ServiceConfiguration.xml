@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Service>
+    <ListenerIP>0.0.0.0</ListenerIP>
+    <Port>8800</Port>
+    <NetworThreads>5</NetworThreads>
+    <ServerThreads>5</ServerThreads>
+    <MaxConnection>50</MaxConnection>
+  </Service>
+  <ConnectInfo>
+    <ConnectIP>127..0.0.1</ConnectIP>
+    <ConnectPort>8800</ConnectPort>
+    <ConnectPassword>Dubistdoof</ConnectPassword>
+  </ConnectInfo>
+  <DatabaseInfo>
+    <DatabaseClientLifeTime>10</DatabaseClientLifeTime>
+    <WorkThreadCount>4</WorkThreadCount>
+    <MaxPoolSize>10</MaxPoolSize>
+    <MinPoolSize>5</MinPoolSize>
+    <SQLHost>SQL_HOST</SQLHost>
+    <SQLUser>sa</SQLUser>
+    <SQLPassword>123456</SQLPassword>
+    <SQLName>DragonWar_Service</SQLName>
+  </DatabaseInfo>
+</ServiceConfiguration>

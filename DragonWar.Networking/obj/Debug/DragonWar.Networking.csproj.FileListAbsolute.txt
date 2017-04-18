@@ -1,0 +1,9 @@
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\obj\Debug\DragonWar.Networking.csprojResolveAssemblyReference.cache
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Networking.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Networking.pdb
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Game.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Utils.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Game.pdb
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\bin\Debug\DragonWar.Utils.pdb
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\obj\Debug\DragonWar.Networking.dll
+C:\Users\Gothic\Desktop\DragonWar 2.0\DragonWar\DragonWar.Networking\obj\Debug\DragonWar.Networking.pdb

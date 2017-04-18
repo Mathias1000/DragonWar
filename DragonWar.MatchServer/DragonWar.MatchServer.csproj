@@ -93,6 +93,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DragonWar.Networking\DragonWar.Networking.csproj">
+      <Project>{025bfd4b-c69d-4ac5-9481-32f29096c865}</Project>
+      <Name>DragonWar.Networking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DragonWar.Utils\DragonWar.Utils.csproj">
       <Project>{846a1515-d001-430c-9205-647de5633072}</Project>
       <Name>DragonWar.Utils</Name>

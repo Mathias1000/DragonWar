@@ -1,13 +1,10 @@
-﻿using DragonWar.Service.Config;
-using DragonWar.Utils.Network;
-using DragonWar.Utils.Packet;
+﻿using DragonWar.Networking.Network;
+using DragonWar.Networking.Packet;
+using DragonWar.Service.Config;
+
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonWar.Service.Network
 {

@@ -51,17 +51,6 @@
     <Compile Include="Enum\ServerTaskTimes.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Logging\ProgressBar.cs" />
-    <Compile Include="Network\GameSessionBase.cs" />
-    <Compile Include="Network\ServerBase.cs" />
-    <Compile Include="Network\ServiceClient.cs" />
-    <Compile Include="Network\ServiceSessionBase.cs" />
-    <Compile Include="Network\SessionBase.cs" />
-    <Compile Include="Network\SessionEventArgs.cs" />
-    <Compile Include="Packet\Proccessing\DataProcessingInfo.cs" />
-    <Compile Include="Packet\Proccessing\DataProcessingQueue.cs" />
-    <Compile Include="Packet\Proccessing\ServiceDataProccessingInfo.cs" />
-    <Compile Include="Packet\ServicePacket.cs" />
-    <Compile Include="Packet\Proccessing\ServiceProcessingQueue.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="Utils\ByteUtils.cs" />
     <Compile Include="Config\Configuration.cs" />

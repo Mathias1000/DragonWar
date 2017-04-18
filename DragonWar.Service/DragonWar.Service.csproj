@@ -59,12 +59,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DragonWar.Game\DragonWar.Game.csproj">
+      <Project>{bcf52880-b066-4557-97af-edf3ca7432b4}</Project>
+      <Name>DragonWar.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DragonWar.Networking\DragonWar.Networking.csproj">
+      <Project>{025bfd4b-c69d-4ac5-9481-32f29096c865}</Project>
+      <Name>DragonWar.Networking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DragonWar.Utils\DragonWar.Utils.csproj">
       <Project>{846a1515-d001-430c-9205-647de5633072}</Project>
       <Name>DragonWar.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

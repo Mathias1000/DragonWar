@@ -1,14 +1,11 @@
-﻿using DragonWar.Utils.Network;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.IO;
 using System.Net.Sockets;
+
 using DragonWar.Service.Config;
 using DragonWar.Service.ServerConsole.Title;
-using DragonWar.Utils.Packet;
+using DragonWar.Networking.Network;
+using DragonWar.Networking.Packet;
 
 namespace DragonWar.Service.Network
 {
@@ -62,7 +59,7 @@ namespace DragonWar.Service.Network
 
         protected override void ReceiveMessage(ServiceSession client, MemoryStream packet)
         {
-            ServiceDataProccessingInfo<ServiceSession> n = new ServiceDataProccessingInfo<ServiceSession>(client, new ServicePacket());
+         //   ServiceDataProccessingInfo<ServiceSession> n = new ServiceDataProccessingInfo<ServiceSession>(client, new IServicePacket());
             Console.WriteLine("recv");
             client.Socket.Send(System.Text.ASCIIEncoding.ASCII.GetBytes("klobros"));
         }

@@ -1,0 +1,13 @@
+﻿<Window x:Class="DragonWar.LobbyClient.GUI.Windows.StartForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DragonWar.LobbyClient.GUI.Windows"
+        mc:Ignorable="d" Height="176.923" Width="500" ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ProgressBar HorizontalAlignment="Left" Height="30" Margin="38,73,0,0" VerticalAlignment="Top" Width="406"/>
+        <Label Content="Loading : " FontSize="16" HorizontalAlignment="Left" Margin="24,25,0,0" VerticalAlignment="Top" FontWeight="ExtraBold"/>
+        <Label Name="DataContentLabel" Content="DataToLoad"  FontSize="16" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="ExtraBold"></Label>
+    </Grid>
+</Window>
