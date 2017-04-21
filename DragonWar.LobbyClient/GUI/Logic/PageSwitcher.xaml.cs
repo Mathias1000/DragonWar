@@ -24,7 +24,6 @@ namespace DragonWar.LobbyClient.GUI.Logic
         {
             InitializeComponent();
             Switcher.pageSwitcher = this;
-        
             Switcher.Switch(new LoginPanel());
         }
 

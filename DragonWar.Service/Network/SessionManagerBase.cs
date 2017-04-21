@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 
 namespace DragonWar.Service.Network
 {
-    public class SessionManagerBase<TSession> where TSession : ServiceSessionBase
+    public class SessionManagerBase<TSession> where TSession : SessionBase
     {
         public int CountOfSessions => Sessions.Count;
 
@@ -21,8 +21,7 @@ namespace DragonWar.Service.Network
 
         public bool AddSession(TSession mSession)
         {
-            ushort SessionId;
-            if (SessionIds.TryDequeue(out SessionId))
+            if (SessionIds.TryDequeue(out ushort SessionId))
             {
                 if (Sessions.TryAdd(SessionId, mSession))
                 {
@@ -37,8 +36,7 @@ namespace DragonWar.Service.Network
 
         public bool RemoveSession(ushort SessionId)
         {
-            TSession mSession;
-            if (Sessions.TryRemove(SessionId, out mSession))
+            if (Sessions.TryRemove(SessionId, out TSession mSession))
             {
                 SessionIds.Enqueue(SessionId);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DragonWar.Networking.Packet;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DragonWar.Networking.Network
 {
-    public abstract class ServiceClient<Client> : SessionBase where Client : SessionBase
+    public abstract class ServiceClient<Client> : ServiceSessionBase where Client : ServiceSessionBase
     {
         public const int BufferSize = 1024;//0x1FFFE;
 
     
-        ClientStateObject state { get; set; }
+        ClientStateObject State { get; set; }
 
         public ServiceClient(Socket sock) : base(sock)
         {
@@ -28,14 +29,14 @@ namespace DragonWar.Networking.Network
 
         public void Start()
         {
-            state = new ClientStateObject();
-            Socket.BeginReceive(state.buffer, 0, BufferSize, SocketFlags.None, HandleAsyncReceive, state);
+            State = new ClientStateObject();
+            Socket.BeginReceive(State.buffer, 0, BufferSize, SocketFlags.None, HandleAsyncReceive, State);
         }
 
 
         public void HandleAsyncReceive(IAsyncResult res)
         {
-          state = (ClientStateObject)res.AsyncState;
+          State = (ClientStateObject)res.AsyncState;
 
             try
             {
@@ -45,13 +46,13 @@ namespace DragonWar.Networking.Network
                 // data was read from client socket
                 if (read > 0)
                 {
-                    using (MemoryStream stream = new MemoryStream(state.buffer, 0, read, false, true))
-                        ReceiveMessage(this, stream);
+                    using (BinaryPacket stream = new BinaryPacket(State.buffer))
+                        ReceiveData(this, stream);
 
                     if (!IsClosing)
                     {
                         // begin receiving again after handling, so we can re-usse the same stateobject/buffer without issues.
-                        Socket.BeginReceive(state.buffer, 0, BufferSize, 0, HandleAsyncReceive, state);
+                        Socket.BeginReceive(State.buffer, 0, BufferSize, 0, HandleAsyncReceive, State);
                     }
                     else
                     {
@@ -97,8 +98,8 @@ namespace DragonWar.Networking.Network
             }
         }
 
-
-        protected abstract void ReceiveMessage(ServiceClient<Client> client, MemoryStream packet);
+    
+        protected abstract void ReceiveData(ServiceClient<Client> client, BinaryPacket packet);
 
 
         private class ClientStateObject

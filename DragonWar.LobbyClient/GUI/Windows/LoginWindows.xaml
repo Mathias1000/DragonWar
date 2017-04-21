@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DragonWar.LobbyClient.GUI.Controls"
         mc:Ignorable="d"
         Title="LoginWindows" Height="768" Width="1280">
+    
     <DockPanel LastChildFill="False">
 
         <local:LoginPanel Width="200"  Background="Gray" DockPanel.Dock="Right"></local:LoginPanel>

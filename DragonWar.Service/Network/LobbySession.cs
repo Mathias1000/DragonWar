@@ -4,10 +4,12 @@ using DragonWar.Networking.Network;
 
 namespace DragonWar.Service.Network
 {
-    public class LobbySession : ServiceSessionBase
+    public class LobbySession : GameSessionBase
     {
         public LobbySession(Socket sock) : base(sock)
         {
         }
+
+      
     }
 }

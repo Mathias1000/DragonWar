@@ -11,7 +11,7 @@ public class Reflector
     {
         get
         {
-            return _Global == null ? _Global = new Reflector(AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("DragonWar.")).ToArray()) : _Global;
+            return _Global ?? (_Global = new Reflector(AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("DragonWar.")).ToArray()));
         }
     }
     private static Reflector _Global;
@@ -41,7 +41,14 @@ public class Reflector
                 where attr != null
                 select new Pair<pAttribute, Type>(attr, type)).ToArray();
     }
-
+        public  IEnumerable<Pair<TAttribute, Type>> FindTypeByAttribute<TAttribute>()
+         where TAttribute : Attribute
+    {
+        return (from method in Assemblies.SelectMany(assembly => assembly.GetTypes())
+                let attribute = Attribute.GetCustomAttribute(method, typeof(TAttribute), false) as TAttribute
+                where attribute != null
+                select new Pair<TAttribute, Type>(attribute, attribute.GetType()));
+    }
     public Pair<pAttribute, MethodInfo>[] GetMethodsWithAttribute<pAttribute>()
     where pAttribute : Attribute
     {
@@ -178,5 +185,7 @@ public class Reflector
                       as ServerTaskClass
                select new Pair<ServerTaskTimes, Type>(at.serverGC_Interval, t);
     }
+
+
 }
 

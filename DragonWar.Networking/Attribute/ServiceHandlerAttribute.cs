@@ -3,12 +3,12 @@
 [AttributeUsage(AttributeTargets.Class)]
 public class ServiceHandlerClassAttribute : Attribute
 {
-    public ServiceHandlerClassAttribute(byte header)
+    public ServiceHandlerClassAttribute(ServiceHeaderType header)
     {
         this.Header = header;
     }
 
-    public byte Header { get; private set; }
+    public ServiceHeaderType Header { get; private set; }
 }
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]

@@ -58,9 +58,7 @@ namespace DragonWar.Utils.Logging
                 {
                     var split = withoutEx.Split('_');
 
-                    uint ID;
-                    if (uint.TryParse(split[0], out ID)
-                    && ID >= SessionID)
+                    if (uint.TryParse(split[0], out uint ID) && ID >= SessionID)
                     {
                         SessionID = (ID + 1);
                     }
@@ -76,12 +74,11 @@ namespace DragonWar.Utils.Logging
             {
                 lock (IOLocker)
                 {
-                    StreamWriter writer;
-                    if (!Writers.TryGetValue(LogName.ToLower(), out writer))
+                    if (!Writers.TryGetValue(LogName.ToLower(), out StreamWriter writer))
                     {
                         writer = new StreamWriter(String.Format("{0}{1}_{2}_{3}.txt", Directory, SessionID, LogName, SessionTime.ToString("MM_dd_yyyy"))) { AutoFlush = true };
                         Writers.TryAdd(LogName.ToLower(), writer);
-     
+
                     }
                     writer.WriteLine(Message);
                 }

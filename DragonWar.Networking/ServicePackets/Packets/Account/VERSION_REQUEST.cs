@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DragonWar.Networking.HandlerTypes
+namespace DragonWar.Networking.ServicePackets.Account
 {
-    public enum HeaderTypes : byte
+    struct VERSION_REQUEST
     {
-        Account
     }
 }

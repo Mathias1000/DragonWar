@@ -6,6 +6,7 @@ using DragonWar.Service.Config;
 using DragonWar.Service.ServerConsole.Title;
 using DragonWar.Networking.Network;
 using DragonWar.Networking.Packet;
+using DragonWar.Networking.Handling.Store;
 
 namespace DragonWar.Service.Network
 {
@@ -23,6 +24,12 @@ namespace DragonWar.Service.Network
             OnConnect += ServiceServer_OnConnect;
             OnDisconnect += ServiceServer_OnDisconnect;
             PacketProcessor = new ServiceProcessingQueue<ServiceSession>();
+            ServiceHandlerStore.Instance.UnknownPacket += Instance_UnknownPacket;
+        }
+
+        private void Instance_UnknownPacket(ServicePacket reader)
+        {
+            Console.Write("Unk");
         }
 
         private void ServiceServer_OnDisconnect(object sender, SessionEventArgs<ServiceSession> e)
@@ -43,11 +50,11 @@ namespace DragonWar.Service.Network
         }
 
         [InitializerMethod]
-        public static bool initialize()
+        public static bool Initialize()
         {
             Instance = new ServiceServer(ServiceConfiguration.Instance.Service.Port);
             Instance.PacketProcessor.StartWorkerThreads(ServiceConfiguration.Instance.Service.NetworThreads);
-
+           
             Instance.StartAccept();
             SocketLog.Write(SocketLogLevel.Debug, "Listening Service on port {0}", ServiceConfiguration.Instance.Service.Port);
             return true;
@@ -57,11 +64,16 @@ namespace DragonWar.Service.Network
             return new ServiceSession(socket);
         }
 
-        protected override void ReceiveMessage(ServiceSession client, MemoryStream packet)
+        protected override void ReceiveData(ServiceSession client, BinaryPacket packet)
         {
-         //   ServiceDataProccessingInfo<ServiceSession> n = new ServiceDataProccessingInfo<ServiceSession>(client, new IServicePacket());
-            Console.WriteLine("recv");
-            client.Socket.Send(System.Text.ASCIIEncoding.ASCII.GetBytes("klobros"));
+            if (!packet.Read(out int Lenght) || !packet.ReadBytes(Lenght, out byte[] PacketData))
+            {
+                return;
+            }
+
+            dynamic Packet = PacketData.ToPacket<ServicePacket>();
+            PacketProcessor.EnqueueProcessingInfo(new ServiceDataProccessingInfo<ServiceSession>(client, Packet));
+
         }
     }
 }

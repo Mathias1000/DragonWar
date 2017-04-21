@@ -9,10 +9,10 @@
     <Grid Background="Green"  HorizontalAlignment="Right">
         <Label Content="Anmelden" FontWeight="ExtraBold" FontSize="24" Margin="22,70,0,0" ></Label>
         <Label Content="Benutzer Name :" FontWeight="ExtraBold" FontSize="16" Margin="22,180,10,0" ></Label>
-        <TextBox Name="AccountInput" HorizontalAlignment="Left" Height="23" Margin="22,214,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.508,0.739"/>
+        <TextBox Name="AccountInput" HorizontalAlignment="Left" Height="23" Margin="22,214,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.508,0.739" TextChanged="AccountInput_TextChanged" KeyDown="AccountInput_KeyDown"/>
         <Label Content="Password :" FontWeight="ExtraBold" FontSize="16" Margin="22,255,0,0"></Label>
-        <PasswordBox Name="PasswordInput" HorizontalAlignment="Left" Height="23" Margin="22,282,-79,0"  VerticalAlignment="Top" Width="134"/>
-        <Button Name="Login" IsEnabled="False" Width="120" Height="23" Content="Anmelden" Margin="22,250,22,0"></Button>
+        <PasswordBox Name="PasswordInput" HorizontalAlignment="Left" Height="23" Margin="22,282,-79,0"  VerticalAlignment="Top" Width="134" PasswordChanged="PasswordInput_PasswordChanged" KeyDown="PasswordInput_KeyDown"/>
+        <Button Name="Login" IsEnabled="False" Width="120" Height="23" Content="Anmelden" Margin="22,250,22,0" Click="Login_Click"/>
         <Label Name="AnmeldeStateLabel" HorizontalAlignment="Left" Margin="24,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,-0.423" Width="120"/>
     </Grid>
 </UserControl>

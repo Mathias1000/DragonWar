@@ -1,4 +1,5 @@
 ﻿using DragonWar.MatchServer.Config;
+using DragonWar.MatchServer.Network;
 using DragonWar.MatchServer.ServerConsole.Title;
 using DragonWar.Utils.Core;
 
@@ -38,12 +39,14 @@ namespace DragonWar.MatchServer.Core
                 throw new StartupException("Invalid Load Server");
             }
 
-            InternalInstance.LoadThreadPool(MatchServerConfiguration.Instance.MatchServerInfo.NetworThreads);
+            InternalInstance.LoadThreadPool(MatchServerConfiguration.Instance.WorkThreadCount);
 
             if (!InternalInstance.LoadGameServerModules())
             {
                 throw new StartupException("Invalid Load Server");
             }
+            ServiceSession.Instance.Socket.Send(System.Text.ASCIIEncoding.ASCII.GetBytes("lool"));
+            InternalInstance.ServerIsReady = true;
 
             return true;
         }

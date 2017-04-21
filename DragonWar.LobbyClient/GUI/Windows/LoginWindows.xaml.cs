@@ -22,6 +22,7 @@ namespace DragonWar.LobbyClient.GUI.Windows
         public LoginWindows()
         {
             InitializeComponent();
+            Console.Write("lol");
         }
     }
 }

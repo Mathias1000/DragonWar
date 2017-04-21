@@ -1,5 +1,8 @@
 ﻿using DragonWar.Networking.Network;
 using DragonWar.Networking.Packet;
+using DragonWar.Networking.Packet.Lobby.Protocol;
+using DragonWar.Networking.Packet.Lobby.Server;
+using DragonWar.Networking.Packet.Proccessing;
 using DragonWar.Service.Config;
 
 using System;
@@ -15,14 +18,14 @@ namespace DragonWar.Service.Network
     {
         private static LobbyServer Instance { get; set; }
 
-        private ServiceProcessingQueue<ServiceSession> PacketProcessor;
+        private LobbyProcessingQueue<LobbySession> PacketProcessor;
 
         public LobbyServer(int port) : base(port)
         {
             OnConnect += LobbyServer_OnConnect;
             OnDisconnect += LobbyServer_OnDisconnect;
 
-            PacketProcessor = new ServiceProcessingQueue<ServiceSession>();
+            PacketProcessor = new LobbyProcessingQueue<LobbySession>();
         }
 
         private void LobbyServer_OnDisconnect(object sender, SessionEventArgs<LobbySession> e)
@@ -37,13 +40,28 @@ namespace DragonWar.Service.Network
         {
             if (!LobbySessionManager.Instance.AddSession(e.Session))
             {
-              //TODO SEnd ServerState Packet
+
+                ServerStatusPacket mPacket = new ServerStatusPacket
+                {
+                      State = ServerState.Full,
+                };
+                e.Session.SendPacket(mPacket);
                 e.Session.Close();
             }
+            else
+            {
+                LobbyHandShake HandShake = new LobbyHandShake
+                {
+                     
+                };
+                e.Session.EncryptKey = HandShake.EncrypPos;
+                e.Session.SendPacket(HandShake);
+            }
+        
         }
 
         [InitializerMethod]
-        public static bool initialize()
+        public static bool Initialize()
         {
             Instance = new LobbyServer(ServiceConfiguration.Instance.GameServer.Port);
             Instance.PacketProcessor.StartWorkerThreads(ServiceConfiguration.Instance.GameServer.NetworThreads);
@@ -59,8 +77,9 @@ namespace DragonWar.Service.Network
             return new LobbySession(socket);
         }
 
-        protected override void ReceiveMessage(LobbySession client, MemoryStream packet)
+        protected override void ReceiveData(LobbySession client,BinaryPacket packet)
         {
+          //  PacketProcessor.EnqueueProcessingInfo(new DataProcessingInfo<ServiceSession, ServicePacket>(client, new LobbyPacket());
             Console.WriteLine("recv");
             client.Socket.Send(System.Text.ASCIIEncoding.ASCII.GetBytes("klobros"));
         }

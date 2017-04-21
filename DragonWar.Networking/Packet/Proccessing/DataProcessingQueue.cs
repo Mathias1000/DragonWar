@@ -1,4 +1,5 @@
-﻿using DragonWar.Networking.Network;
+﻿using DragonWar.Networking.Handling.Store;
+using DragonWar.Networking.Network;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -59,9 +60,8 @@ namespace DragonWar.Networking.Packet
             }
         }
 
-        protected void ProcessInfo(DataProcessingInfo<SessionType, PacketType> info)
+        protected virtual  void ProcessInfo(DataProcessingInfo<SessionType, PacketType> info)
         {
-            Console.WriteLine("Handle Packet");
         
         }
 

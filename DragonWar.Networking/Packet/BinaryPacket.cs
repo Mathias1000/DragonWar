@@ -30,7 +30,7 @@ namespace DragonWar.Networking.Packet
             RegisterPrimitiveTypeWriteMethods();
         }
 
-        protected BinaryPacket(byte[] pBuffer) : this()
+        public BinaryPacket(byte[] pBuffer) : this()
         {
             Buffer = new MemoryStream(pBuffer);
             Reader = new BinaryReader(Buffer);
@@ -46,7 +46,7 @@ namespace DragonWar.Networking.Packet
             RegisterPrimitiveTypeWriteMethods();
         }
 
-        protected BinaryPacket(MemoryStream pBuffer) : this()
+        public BinaryPacket(MemoryStream pBuffer) : this()
         {
             Buffer = pBuffer;
             Reader = new BinaryReader(Buffer);

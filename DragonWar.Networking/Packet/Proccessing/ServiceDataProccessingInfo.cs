@@ -2,9 +2,9 @@
 
 namespace DragonWar.Networking.Packet
 {
-    public class ServiceDataProccessingInfo<Session> : DataProcessingInfo<Session, IServicePacket> where Session : ServiceSessionBase
+    public class ServiceDataProccessingInfo<Session> : DataProcessingInfo<Session, ServicePacket> where Session : ServiceSessionBase
     {
-        public ServiceDataProccessingInfo(Session session, IServicePacket pPacket) : base(session, pPacket)
+        public ServiceDataProccessingInfo(Session session, ServicePacket pPacket) : base(session, pPacket)
         {
         }
     }

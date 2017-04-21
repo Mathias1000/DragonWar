@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DragonWar.Service.Network
 {
-    [ServerModule(ServerType.Match,InitializationStage.Networking)]
+    [ServerModule(ServerType.Service,InitializationStage.Networking)]
     public class LobbySessionManager : SessionManagerBase<LobbySession>
     {
         public static LobbySessionManager Instance { get; private set; }

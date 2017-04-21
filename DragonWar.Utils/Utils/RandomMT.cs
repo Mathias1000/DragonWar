@@ -68,13 +68,13 @@ public sealed class RandomMT
             CurrentSeeds[i] = (ulong)(rand.Next() + SeedCounter++);
         }
 
-        init_by_array(CurrentSeeds, SeedsLength);
+        Init_by_array(CurrentSeeds, SeedsLength);
     }
 
 
 
     // initializes mt[N] with a seed
-    private void init_genrand(ulong s)
+    private void Init_genrand(ulong s)
     {
         mt[0] = s & 0xffffffffUL;
         for (mti = 1; mti < N; mti++)
@@ -88,10 +88,10 @@ public sealed class RandomMT
     // initialize by an array with array-length
     // init_key is the array for initializing keys
     // key_length is its length
-    public void init_by_array(ulong[] init_key, ulong key_length)
+    public void Init_by_array(ulong[] init_key, ulong key_length)
     {
         ulong i, j, k;
-        init_genrand(19650218UL);
+        Init_genrand(19650218UL);
         i = 1; j = 0;
         k = (N > key_length ? N : key_length);
         for (; k > 0; k--)
@@ -115,35 +115,35 @@ public sealed class RandomMT
     }
 
     // generates a random number on [0,0x7fffffff]-interval
-    public long genrand_int31()
+    public long Genrand_int31()
     {
-        return (long)(genrand_int32() >> 1);
+        return (long)(Genrand_int32() >> 1);
     }
     // generates a random number on [0,1]-real-interval
-    public double genrand_real1()
+    public double Genrand_real1()
     {
-        return (double)genrand_int32() * (1.0 / 4294967295.0); // divided by 2^32-1 
+        return (double)Genrand_int32() * (1.0 / 4294967295.0); // divided by 2^32-1 
     }
     // generates a random number on [0,1)-real-interval
-    public double genrand_real2()
+    public double Genrand_real2()
     {
-        return (double)genrand_int32() * (1.0 / 4294967296.0); // divided by 2^32
+        return (double)Genrand_int32() * (1.0 / 4294967296.0); // divided by 2^32
     }
     // generates a random number on (0,1)-real-interval
-    public double genrand_real3()
+    public double Genrand_real3()
     {
-        return (((double)genrand_int32()) + 0.5) * (1.0 / 4294967296.0); // divided by 2^32
+        return (((double)Genrand_int32()) + 0.5) * (1.0 / 4294967296.0); // divided by 2^32
     }
     // generates a random number on [0,1) with 53-bit resolution
-    public double genrand_res53()
+    public double Genrand_res53()
     {
-        ulong a = genrand_int32() >> 5;
-        ulong b = genrand_int32() >> 6;
+        ulong a = Genrand_int32() >> 5;
+        ulong b = Genrand_int32() >> 6;
         return (double)(a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
     }
 
     // generates a random number on [0,0xffffffff]-interval
-    public ulong genrand_int32()
+    public ulong Genrand_int32()
     {
         if (AutoReseed)
             ReSeed();
@@ -164,7 +164,7 @@ public sealed class RandomMT
             ulong kk;
 
             if (mti == N + 1)   /* if init_genrand() has not been called, */
-                init_genrand(5489UL); /* a default initial seed is used */
+                Init_genrand(5489UL); /* a default initial seed is used */
 
             for (kk = 0; kk < N - M; kk++)
             {
@@ -196,7 +196,7 @@ public sealed class RandomMT
 
     public int RandomRange(int lo, int hi)
     {
-        return (Math.Abs((int)genrand_int32() % (hi - lo + 1)) + lo);
+        return (Math.Abs((int)Genrand_int32() % (hi - lo + 1)) + lo);
     }
     public byte[] RandomBytes(int Length)
     {
@@ -214,6 +214,6 @@ public sealed class RandomMT
 
     public bool PercentChance(double Percent)
     {
-        return (genrand_real1() <= (Percent / 100.0));
+        return (Genrand_real1() <= (Percent / 100.0));
     }
 }

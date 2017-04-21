@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DragonWar.Networking.Packet;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -63,10 +64,10 @@ namespace DragonWar.Networking.Network
             }
 
 
-            ServerStateObject state = new ServerStateObject();
-
-            state.client = CreateClient(client.Client);
-
+            ServerStateObject state = new ServerStateObject()
+            {
+                client = CreateClient(client.Client)
+            };
             InvokeConnect(state.client);
 
             if (!state.client.IsClosing)
@@ -88,8 +89,9 @@ namespace DragonWar.Networking.Network
                 // data was read from client socket
                 if (read > 0)
                 {
-                    using (MemoryStream stream = new MemoryStream(state.buffer, 0, read, false, true))
-                        ReceiveMessage(Session, stream);
+
+                    using (BinaryPacket stream = new BinaryPacket(state.buffer))
+                        ReceiveData(Session, stream);
 
                     if (!Session.IsClosing)
                     {
@@ -147,7 +149,7 @@ namespace DragonWar.Networking.Network
             return true;
         }
 
-        protected abstract void ReceiveMessage(TSession client, MemoryStream packet);
+        protected abstract void ReceiveData(TSession client, BinaryPacket packet);
         protected abstract TSession CreateClient(Socket socket);
         // See: http://msdn.microsoft.com/en-us/library/5w7b7x5f.aspx
         private class ServerStateObject

@@ -55,6 +55,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Attributes\LobbyModuleAtrribute.cs" />
+    <Compile Include="Config\LobbyClientConfiguration.cs" />
+    <Compile Include="Enum\LobbyModuleType.cs" />
+    <Compile Include="Enum\ModuleInitializationStage.cs" />
+    <Compile Include="GameClient.cs" />
     <Compile Include="GUI\Controls\LoginPanel.xaml.cs">
       <DependentUpon>LoginPanel.xaml</DependentUpon>
     </Compile>
@@ -69,6 +74,11 @@
     <Compile Include="GUI\Windows\StartForm.xaml.cs">
       <DependentUpon>StartForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Windows\Warning.xaml.cs">
+      <DependentUpon>Warning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Network\Handlers\ProtocolHandler.cs" />
+    <Compile Include="Network\Handlers\ServerStatusHandler.cs" />
     <Compile Include="Network\LobbySession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -83,6 +93,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utils\ClientReflector.cs" />
+    <Compile Include="Utils\ConsoleHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -107,7 +119,9 @@
       <Name>DragonWar.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Module\" />
+  </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Windows\StartForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Windows\Warning.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

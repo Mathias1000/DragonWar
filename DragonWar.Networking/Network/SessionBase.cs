@@ -10,6 +10,8 @@ namespace DragonWar.Networking.Network
 {
     public abstract class SessionBase
     {
+        public ushort SessiondId { get; set; }
+
         private Socket m_socket;
 
         public bool IsClosing { get; private set; } = true;
@@ -33,11 +35,11 @@ namespace DragonWar.Networking.Network
         }
 
 
-        public void SendMessage(MemoryStream stream)
+        public void Send(byte[] buffer)
         {
             // we're using the stream's buffer, is this thread-safe for whatever may be re-using the buffer after?
-            byte[] buffer = stream.GetBuffer();
-            Socket.BeginSend(buffer, 0, (int)stream.Length, SocketFlags.None, new AsyncCallback(HandleAsyncSend), this);
+            
+            Socket.BeginSend(buffer, 0, (int)buffer.Length, SocketFlags.None, new AsyncCallback(HandleAsyncSend), this);
         }
 
         private static void HandleAsyncSend(IAsyncResult res)
