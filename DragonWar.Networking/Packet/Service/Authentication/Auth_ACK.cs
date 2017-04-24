@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DragonWar.Networking.Packet.Service.Authentication
 {
+    [Serializable]
     public class Auth_ACK : ServicePacket
     {
         public override ServiceHeaderType Header => ServiceHeaderType.Connection;

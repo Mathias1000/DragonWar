@@ -1,6 +1,8 @@
 ﻿using DragonWar.MatchServer.Config;
 using DragonWar.MatchServer.Network;
 using DragonWar.MatchServer.ServerConsole.Title;
+using DragonWar.Networking.Packet.Lobby.Protocol;
+using DragonWar.Networking.Packet.Service.Authentication;
 using DragonWar.Utils.Core;
 
 
@@ -45,7 +47,23 @@ namespace DragonWar.MatchServer.Core
             {
                 throw new StartupException("Invalid Load Server");
             }
-            ServiceSession.Instance.Socket.Send(System.Text.ASCIIEncoding.ASCII.GetBytes("lool"));
+
+            ServiceClient mClient = new ServiceClient(new System.Net.Sockets.Socket(System.Net.Sockets.SocketType.Stream, System.Net.Sockets.ProtocolType.Tcp));
+            mClient.TryConnectToLogin("127.0.0.1", 900, 10);
+            int i = 0;
+            while (true)
+            {
+                System.Threading.Thread.Sleep(3000);
+
+                Auth_ACK mack = new Auth_ACK();
+                mack.Password = i.ToString();
+                mClient.SendPacket(mack);
+                i++;
+                if(i == 10)
+                {
+                    mClient.Close();
+                }
+            }
             InternalInstance.ServerIsReady = true;
 
             return true;

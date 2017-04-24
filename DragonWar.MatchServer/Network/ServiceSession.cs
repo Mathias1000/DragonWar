@@ -9,6 +9,7 @@ using DragonWar.Networking.Handling.Store;
 
 namespace DragonWar.MatchServer.Network
 {
+    /*
     [ServerModule(ServerType.Match, InitializationStage.Networking)]
     public class ServiceSession : ServiceClient<ServiceSession>
     {
@@ -48,27 +49,6 @@ namespace DragonWar.MatchServer.Network
             return false;
 
         }
-        protected void TryConnectToLogin(string host, int port, int tryCount = 0)
-        {
-            try
-            {
-                Socket.Connect(host, port);
-            }
-            catch (Exception e)
-                when (tryCount >= 5)
-            {
-                // we already tried 5 time
-                EngineLog.Write(EngineLogLevel.Exception, $"Failed to connect to Service after {tryCount} tries");
-                EngineLog.Write(EngineLogLevel.Exception, "Could connect to Service server! Shutdown...", e);
-
-            }
-            catch   // if no "when"-clauses filter the exception out
-            {
-                // we haven't tried 5 times yet
-                EngineLog.Write(EngineLogLevel.Exception, $"Try {tryCount} to connect to Service failed, trying again...");
-                TryConnectToLogin(host, port, tryCount + 1);
-            }
-        }
 
         protected override void ReceiveData(ServiceClient<ServiceSession> client, BinaryPacket packet)
         {
@@ -81,6 +61,6 @@ namespace DragonWar.MatchServer.Network
             dynamic Packet = PacketData.ToPacket<ServicePacket>();
             PacketProcessor.EnqueueProcessingInfo(new ServiceDataProccessingInfo<ServiceSession>(this, Packet));
 
-        }
-    }
+        }*/
+   // }
 }

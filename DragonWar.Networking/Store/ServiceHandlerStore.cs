@@ -1,4 +1,5 @@
 ﻿using DragonWar.Networking.Network;
+using DragonWar.Networking.Network.TCP.Client;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,12 +19,10 @@ namespace DragonWar.Networking.Handling.Store
 
         public static ServiceHandlerStore Instance { get; private set; }
 
-        public delegate void PacketHandler(ServicePacket reader);
-        public event PacketHandler UnknownPacket;
-
         public ServiceHandlerStore()
         {
             packetHandlers = new Dictionary<ServiceHeaderType, Dictionary<byte, MethodInfo>>();
+
         }
 
         [InitializerMethod]
@@ -38,12 +37,12 @@ namespace DragonWar.Networking.Handling.Store
             return true;
         }
 
-        public void HandlePacket(ServicePacket pPacket, ServiceSessionBase pSession)
+        public void HandlePacket(ServicePacket pPacket, ServiceClientBase pSession)
         {
             CallMethod(pPacket.Header, pPacket.Handling, pPacket, pSession);
         }
 
-        protected void CallMethod(ServiceHeaderType pHeader, byte pType, ServicePacket pPacket, ServiceSessionBase pSession)
+        protected void CallMethod(ServiceHeaderType pHeader, byte pType, ServicePacket pPacket, ServiceClientBase pSession)
         {
             try
             {
@@ -57,7 +56,8 @@ namespace DragonWar.Networking.Handling.Store
                 }
                 else
                 {
-                    UnknownPacket?.Invoke(pPacket);
+                    SocketLog.Write(SocketLogLevel.Warning, $"No ServicePacket Handler for {(byte)pPacket.Header}:{pPacket.Handling}  found");
+                    SocketLog.Write(SocketLogLevel.Warning, pPacket.ToString());
                 }
             }
             catch (Exception ex)

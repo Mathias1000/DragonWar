@@ -1,42 +1,15 @@
-﻿using DragonWar.Networking.Network;
-using System.Net.Sockets;
-using System.IO;
-using DragonWar.Networking.Packet;
-using System;
-using DragonWar.Networking.Packet.Proccessing;
+﻿using System.Net.Sockets;
+using DragonWar.Networking.Network.TCP.Client;
 
 namespace DragonWar.LobbyClient.Network
 {
-    public class LobbySession : ServiceClient<LobbySession>
+    
+    public class LobbySession : LobbyClientBase
     {
-      public LobbyProcessingQueue<LobbySession> PacketProcessor {  get; private set; }
-
-
-        public LobbySession(Socket sock) : base(sock)
+        public LobbySession(Socket mSocket) : base(mSocket)
         {
-            PacketProcessor = new LobbyProcessingQueue<LobbySession>();
-        }
-        protected override void ReceiveData(ServiceClient<LobbySession> client, BinaryPacket packet)
-        {
-
-            if (!packet.Read(out int Lenght) || !packet.ReadBytes(Lenght, out byte[] PacketData))
-            {
-                return;
-            }
-            dynamic Packet = PacketData.ToPacket<LobbyPacket>();
-
-            PacketProcessor.EnqueueProcessingInfo(new LobbyProccessingInfo<LobbySession>(this, Packet));
-
         }
 
-        public void SendPacket(LobbyPacket pPacket)
-        {
-            if (!pPacket.Read().GetType().IsSerializable)
-            {
-                SocketLog.Write(SocketLogLevel.Warning, "Packet {0} is not IsSerializable can not send", pPacket.GetType());
-                return;
-            }
-            Send(pPacket.Write());
-        }
+
     }
 }

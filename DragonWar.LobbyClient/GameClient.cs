@@ -1,5 +1,6 @@
 ﻿
 using DragonWar.LobbyClient.Config;
+using DragonWar.LobbyClient.Game;
 using DragonWar.LobbyClient.Network;
 using DragonWar.LobbyClient.Utils;
 using DragonWar.Utils.ServerTask;
@@ -7,13 +8,21 @@ using System;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Controls;
 
 public class GameClient
 {
+
+    public delegate void HandshakeHandler(ushort EncryptKey);
+
+    public event HandshakeHandler HandShakeRecv;
+
+    public void InvokeHandshake(ushort Key) => HandShakeRecv?.Invoke(Key);
+
     private LobbySession NetworkSession { get; set; }
 
-    private bool IsOnline { get { return (mSession != null); } }
+    private bool IsOnline { get { return (MSession != null); } }
 
     public static GameClient Instance { get; set; }
 
@@ -25,10 +34,10 @@ public class GameClient
 
     private int ClientWorkerThreads = 2;
 
-    private LobbySession mSession { get; set; }
+    private LobbySession MSession { get; set; }
 
 
-   
+    public LobbyPlayer PlayerInfo { get; set; }
 
     public TaskPool ThreadPool { get; private set; }
 
@@ -36,15 +45,24 @@ public class GameClient
     public GameClient()
     {
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        HandShakeRecv += GameClient_HandShakeRecv;
+    }
+
+    private void GameClient_HandShakeRecv(ushort EncryptKey)
+    {
+        if(IsOnline)
+        {
+            MessageBox.Show("HandShake Recv");
+        }
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-     //TODO HANDLE CLIENT ERRORS
+        //TODO HANDLE CLIENT ERRORS
     }
 
 
-    public void LogWarning(string Title,TextBlock Text,bool ShowWindows)
+    public void LogWarning(string Title, TextBlock Text, bool ShowWindows)
     {
         //TODO WArning Handle
     }
@@ -77,7 +95,7 @@ public class GameClient
             }
             catch
             {
-          
+
                 return false;
             }
         }
@@ -90,20 +108,21 @@ public class GameClient
         ThreadPool.QueueTask(mTask);
     }
 
+   /*
     public bool ConnectToServer()
     {
         try
         {
             if (!IsOnline)
             {
-                mSession = new LobbySession(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
+                MSession = new LobbySession(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
 
-                mSession.PacketProcessor.StartWorkerThreads(1);//Hmm Use Cpu Count?
+                MSession.PacketProcessor.StartWorkerThreads(1);//Hmm Use Cpu Count?
 
 
-                mSession.Socket.Connect(LobbyClientConfiguration.Instance.ConnectInfo.ConnectIP, LobbyClientConfiguration.Instance.ConnectInfo.ConnectPort);
-                mSession.Start();
-                if (mSession.Socket.Connected)
+                MSession.Socket.Connect(LobbyClientConfiguration.Instance.ConnectInfo.ConnectIP, LobbyClientConfiguration.Instance.ConnectInfo.ConnectPort);
+                MSession.Start();
+                if (MSession.Socket.Connected)
                 {
 
                     return true;
@@ -115,8 +134,8 @@ public class GameClient
         {
             return false;
         }
-        
-    }
+
+    }*/
 
     [DllImport("Kernel32")]
     public static extern void AllocConsole();

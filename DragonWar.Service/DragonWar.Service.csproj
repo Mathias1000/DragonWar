@@ -45,13 +45,10 @@
     <Compile Include="Config\ServiceConfiguration.cs" />
     <Compile Include="Config\ServiceDatabaseSection.cs" />
     <Compile Include="Core\ServerMain.cs" />
-    <Compile Include="Network\LobbySession.cs" />
     <Compile Include="Network\LobbyServer.cs" />
-    <Compile Include="Network\LobbySessionManager.cs" />
+    <Compile Include="Network\LobbySession.cs" />
     <Compile Include="Network\ServiceServer.cs" />
     <Compile Include="Network\ServiceSession.cs" />
-    <Compile Include="Network\ServiceSessionManager.cs" />
-    <Compile Include="Network\SessionManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerConsole\Title\ServiceTitle.cs" />
   </ItemGroup>

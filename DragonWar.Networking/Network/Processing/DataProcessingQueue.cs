@@ -1,15 +1,16 @@
 ﻿using DragonWar.Networking.Handling.Store;
 using DragonWar.Networking.Network;
+using DragonWar.Networking.Network.TCP.Client;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-/*
-namespace DragonWar.Networking.Packet
+
+namespace DragonWar.Networking.Network.Processing
 {
-    public class DataProcessingQueue<SessionType, PacketType> where SessionType : SessionBase //: IDisposable
+    public class DataProcessingQueue<SessionType, PacketType> : IDisposable where SessionType : ClientBase
     {
-        private BlockingCollection<DataProcessingInfo<SessionType, PacketType>> _blockingQueue;
+        internal BlockingCollection<DataProcessingInfo<SessionType, PacketType>> _blockingQueue;
         private List<Thread> _workerThreads;
         private int lastAmountOfWorkerThreads = 1;
 
@@ -19,6 +20,7 @@ namespace DragonWar.Networking.Packet
             _workerThreads = new List<Thread>();
         }
 
+ 
         public void StartWorkerThreads(int count)
         {
 
@@ -62,7 +64,7 @@ namespace DragonWar.Networking.Packet
 
         protected virtual  void ProcessInfo(DataProcessingInfo<SessionType, PacketType> info)
         {
-        
+            info.Session.HandlePacket(info.Packet);
         }
 
         public void Stop()
@@ -114,4 +116,3 @@ namespace DragonWar.Networking.Packet
         #endregion
     }
 }
-*/

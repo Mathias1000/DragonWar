@@ -11,11 +11,10 @@ namespace DragonWar.LobbyClient.Network.Handlers
     [LobbyHandlerClass(LobbyHeaderType.Protocol)]
     public class ProtocolHandler
     {
-
         [LobbyHandler((byte)ProtocolTypes.Handshake)]
         public static void HandleServerHandshake(LobbySession mSession, LobbyHandShake mPacket)
         {
-          //TODO Crypting
+            GameClient.Instance.InvokeHandshake(mPacket.EncrypPos);
         }
     }
 }

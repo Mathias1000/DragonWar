@@ -10,7 +10,7 @@ namespace DragonWar.Service.ServerConsole.Title
 {
     public static class ServiceTitle
     {
-
+        /*
         private static int MatchServersCount => (ServiceSessionManager.Instance != null) ? ServiceSessionManager.Instance.CountOfSessions : 0;
 
         private static int ConnectionCount => (LobbySessionManager.Instance != null) ? LobbySessionManager.Instance.CountOfSessions : 0;
@@ -18,6 +18,6 @@ namespace DragonWar.Service.ServerConsole.Title
         public static void Update()
         {
             Console.Title = "Service  || MatchServers[" + MatchServersCount + "] Players[" + ConnectionCount + "]";
-        }
+        }*/
     }
 }

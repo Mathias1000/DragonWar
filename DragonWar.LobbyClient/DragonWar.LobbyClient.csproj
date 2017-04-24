@@ -60,6 +60,7 @@
     <Compile Include="Enum\LobbyModuleType.cs" />
     <Compile Include="Enum\ModuleInitializationStage.cs" />
     <Compile Include="GameClient.cs" />
+    <Compile Include="Game\LobbyPlayer.cs" />
     <Compile Include="GUI\Controls\LoginPanel.xaml.cs">
       <DependentUpon>LoginPanel.xaml</DependentUpon>
     </Compile>
@@ -110,6 +111,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DragonWar.Game\DragonWar.Game.csproj">
+      <Project>{BCF52880-B066-4557-97AF-EDF3CA7432B4}</Project>
+      <Name>DragonWar.Game</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DragonWar.Networking\DragonWar.Networking.csproj">
       <Project>{025bfd4b-c69d-4ac5-9481-32f29096c865}</Project>
       <Name>DragonWar.Networking</Name>

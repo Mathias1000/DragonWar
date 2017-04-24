@@ -56,7 +56,6 @@
     <Compile Include="Config\MatchServerConfiguration.cs" />
     <Compile Include="Core\ServerMain.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Network\GameSession.cs" />
     <Compile Include="Network\Match.cs" />
     <Compile Include="Network\MatchPool.cs" />
     <Compile Include="Network\Packet\GamePacket.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="Network\Packet\Proccesing\DragonWarProcessingQueue.cs" />
     <Compile Include="Network\ServiceSession.cs" />
     <Compile Include="ServerConsole\Title\MatchServerTitle.cs" />
+    <Compile Include="ServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

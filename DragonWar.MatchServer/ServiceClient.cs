@@ -5,15 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
-using DragonWar.Networking.Network.TCP;
 
-namespace DragonWar.Service.Network
+namespace DragonWar.MatchServer
 {
-    public class ServiceSession : ServiceClientBase
+    public class ServiceClient : ServiceClientBase
     {
-        public ServiceSession(Socket mSocket) : base(mSocket)
+        public ServiceClient(Socket mSocket) : base(mSocket)
         {
         }
-
     }
 }

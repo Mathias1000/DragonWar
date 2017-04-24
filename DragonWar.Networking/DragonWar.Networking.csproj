@@ -43,14 +43,24 @@
   <ItemGroup>
     <Compile Include="Attribute\LobbyHandlerAttribute.cs" />
     <Compile Include="Attribute\ServiceHandlerAttribute.cs" />
+    <Compile Include="Network\TCP\Client\ClientBase.cs" />
+    <Compile Include="Network\TCP\Client\LobbyClientBase.cs" />
+    <Compile Include="Network\TCP\DataRecievedEventArgs.cs" />
+    <Compile Include="Network\TCP\Client\ServiceClientBase.cs" />
+    <Compile Include="Network\TCP\Server\LobbyServerBase.cs" />
+    <Compile Include="Network\TCP\Server\ServerBase.cs" />
+    <Compile Include="Network\TCP\Server\ServiceServerBase.cs" />
+    <Compile Include="Network\TCP\SocketDisconnectArgs.cs" />
+    <Compile Include="Network\TCP\TCPRecvCallBack.cs" />
+    <Compile Include="Network\TCP\TCPSendCallBack.cs" />
+    <Compile Include="Network\Processing\DataProcessingInfo.cs" />
+    <Compile Include="Network\Processing\DataProcessingQueue.cs" />
     <Compile Include="Packet\Lobby\Server\ServerStatusPacket.cs" />
     <Compile Include="Packet\Lobby\Types\AccountTypes.cs" />
     <Compile Include="Packet\Lobby\Types\ProtocolTypes.cs" />
     <Compile Include="Packet\Lobby\LobbyHeaderTypes.cs" />
     <Compile Include="Packet\Lobby\Protocol\LobbyHandShake.cs" />
     <Compile Include="Packet\Lobby\Types\ServerStatusTypes.cs" />
-    <Compile Include="Packet\Proccessing\LobbyProcessingInfo.cs" />
-    <Compile Include="Packet\Proccessing\LobbyProcessingQueue.cs" />
     <Compile Include="Packet\Service\Authentication\Auth_ACK.cs" />
     <Compile Include="Packet\Service\Ser viceHeaderTypes.cs" />
     <Compile Include="Packet\Lobby\LobbyPacket.cs" />
@@ -60,17 +70,7 @@
     <Compile Include="Store\LobbyHandlerStore.cs" />
     <Compile Include="Store\ServiceHandlerStore.cs" />
     <Compile Include="NetworkReflector.cs" />
-    <Compile Include="Network\GameSessionBase.cs" />
-    <Compile Include="Network\ServerBase.cs" />
-    <Compile Include="Network\ServiceClient.cs" />
-    <Compile Include="Network\ServiceSessionBase.cs" />
-    <Compile Include="Network\SessionBase.cs" />
-    <Compile Include="Network\SessionEventArgs.cs" />
     <Compile Include="Packet\BinaryPacket.cs" />
-    <Compile Include="Packet\Proccessing\DataProcessingInfo.cs" />
-    <Compile Include="Packet\Proccessing\DataProcessingQueue.cs" />
-    <Compile Include="Packet\Proccessing\ServiceDataProccessingInfo.cs" />
-    <Compile Include="Packet\Proccessing\ServiceProcessingQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

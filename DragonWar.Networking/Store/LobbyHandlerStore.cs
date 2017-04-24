@@ -1,4 +1,5 @@
 ﻿using DragonWar.Networking.Network;
+using DragonWar.Networking.Network.TCP.Client;
 using DragonWar.Networking.Packet;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,12 @@ namespace DragonWar.Networking.Store
 
         public static LobbyHandlerStore Instance { get; private set; }
 
-        public delegate void PacketHandler(LobbyPacket pPacket);
-        public event PacketHandler UnknownPacket;
-
         public LobbyHandlerStore()
         {
             packetHandlers = new Dictionary<LobbyHeaderType, Dictionary<ushort, MethodInfo>>();
         }
 
+ 
         [InitializerMethod]
         public static bool Initialize()
         {
@@ -38,12 +37,18 @@ namespace DragonWar.Networking.Store
             return true;
         }
 
-        public void HandlePacket(LobbyPacket pPacket,SessionBase pSession)
+        private void LobbyHandlerStore_UnknownPacket(LobbyPacket pPacket)
+        {
+            SocketLog.Write(SocketLogLevel.Warning, "No Packet Handler for {0} found", pPacket.Header);
+            SocketLog.Write(SocketLogLevel.Warning, pPacket.ToString());
+        }
+
+        public void HandlePacket(LobbyPacket pPacket,ClientBase pSession)
         {
             CallMethod(pPacket.Header, pPacket.HandlingType, pPacket, pSession);
         }
     
-        protected void CallMethod(LobbyHeaderType pHeader, ushort pType, LobbyPacket pPacket, SessionBase pSession)
+        protected void CallMethod(LobbyHeaderType pHeader, ushort pType, LobbyPacket pPacket, ClientBase pSession)
         {
             try
             {
@@ -56,7 +61,8 @@ namespace DragonWar.Networking.Store
                 }
                 else
                 {
-                    UnknownPacket?.Invoke(pPacket);
+                    SocketLog.Write(SocketLogLevel.Warning, $"No LobbyPacket Handler for {(byte)pPacket.Header}:{pPacket.HandlingType}  found");
+                    SocketLog.Write(SocketLogLevel.Warning, pPacket.ToString());
                 }
             }
             catch (Exception ex)
