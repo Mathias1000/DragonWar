@@ -6,12 +6,12 @@ public class ProgressBar : IDisposable
     {
         if (row_count > 0)
         {
-            init(row_count);
+            Init(row_count);
         }
         else
         {
-            init(1);
-            step();
+            Init(1);
+            Step();
         }
     }
     public void Dispose()
@@ -28,7 +28,7 @@ public class ProgressBar : IDisposable
 
 
 
-    public void step()
+    public void Step()
     {
         if (!m_showOutput)
         {
@@ -77,7 +77,7 @@ public class ProgressBar : IDisposable
     {
         m_showOutput = on;
     }
-    private void init(int row_count)
+    private void Init(int row_count)
     {
         rec_no = 0;
         rec_pos = 0;

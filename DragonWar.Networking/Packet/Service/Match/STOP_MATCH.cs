@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DragonWar.MatchServer.Network.Packet
+namespace DragonWar.Networking.Packet.Service.Match
 {
-    public class GamePacket
+    class STOP_MATCH
     {
     }
 }

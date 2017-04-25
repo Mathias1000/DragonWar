@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace DragonWar.Networking.Handling.Store
 {
     [ServerModule(ServerType.Match, InitializationStage.Logic)]
-    [ServerModule(ServerType.Service, InitializationStage.Networking)]
+    [ServerModule(ServerType.Service, InitializationStage.Logic)]
     public class ServiceHandlerStore
     {
 

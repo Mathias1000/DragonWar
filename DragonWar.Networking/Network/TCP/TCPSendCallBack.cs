@@ -40,17 +40,6 @@ namespace DragonWar.Networking.Network.TCP
         public void Send(byte[] Data)
         {
 
-
-           /* byte[] _data;
-            if (CryptoOption.HasFlag(CryptoDirection.Outgoing))
-            {
-                _data = CryptoProvider.Encrypt(Data, 0, Data.Length);
-            }
-            else
-            {
-                _data = Data;
-            }*/
-
             SendBuffer.Enqueue(Data);
 
 
@@ -112,7 +101,7 @@ namespace DragonWar.Networking.Network.TCP
             }
             catch
             {
-              //  InvokeDisconnect();
+                InvokeError(args.SocketError);
             }
             finally
             {

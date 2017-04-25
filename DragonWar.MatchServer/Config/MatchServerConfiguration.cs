@@ -14,9 +14,12 @@ namespace DragonWar.MatchServer.Config
 
         public ConnectSection ConnectInfo { get; set; } = new ConnectSection();
 
+
         public int MinPort { get; set; } = 5000;
 
         public int MaxPort { get; set; } = 5002;
+
+        public string GameIP { get; set; } = "127.0.0.1";
 
         public int WorkThreadCount { get; set; } = 4;
 

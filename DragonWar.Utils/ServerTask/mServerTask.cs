@@ -4,7 +4,9 @@ namespace DragonWar.Utils.ServerTask
 {
     public delegate void TaskEvenHandler(GameTime Now);
 
+#pragma warning disable IDE1006 // Benennungsstile
     public abstract class mServerTask : IServerTask
+#pragma warning restore IDE1006 // Benennungsstile
     {
         public ServerTaskTimes Intervall { get; set; }
         public GameTime LastUpdate { get; set; }

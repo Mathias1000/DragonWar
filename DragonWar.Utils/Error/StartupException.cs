@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
+[Serializable]
 public class StartupException : Exception
 {
     public StartupException(string message)

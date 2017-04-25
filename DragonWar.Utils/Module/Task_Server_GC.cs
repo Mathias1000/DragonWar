@@ -14,6 +14,7 @@ namespace DragonWar.Utils.Module.Server
      
         public override bool Update(GameTime Now)
         {
+            Console.WriteLine("GC_COLLECT");
             GC.Collect();
             return true;
         }

@@ -50,6 +50,7 @@
     <Compile Include="Enum\GameInitalStage.cs" />
     <Compile Include="Enum\ServerTaskTimes.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Logging\ProgressBar.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="Utils\ByteUtils.cs" />

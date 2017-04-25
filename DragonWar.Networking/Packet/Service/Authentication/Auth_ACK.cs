@@ -9,7 +9,7 @@ namespace DragonWar.Networking.Packet.Service.Authentication
     [Serializable]
     public class Auth_ACK : ServicePacket
     {
-        public override ServiceHeaderType Header => ServiceHeaderType.Connection;
+        public override ServiceHeaderType Header => ServiceHeaderType.Protocol;
 
         public override byte Handling => (byte)ConnectionTypes.Auth_ACK;
 

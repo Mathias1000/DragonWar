@@ -3,84 +3,79 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using DragonWar.Utils.Core;
+using System.Collections.Concurrent;
 
 namespace DragonWar.Utils.ServerTask
 {
     public sealed class TaskPool : IDisposable
     {
 
-        private readonly LinkedList<Thread> _workers; // queue of worker threads ready to process actions
-        private readonly LinkedList<IServerTask> _tasks = new LinkedList<IServerTask>();
-        private bool _disallowAdd; // set to true when disposing queue but there are still tasks pending
-        private bool _disposed; // set to true when disposing queue and no more tasks are pending
+        private readonly List<Thread> _workers; // queue of worker threads ready to process actions
+        private readonly BlockingCollection<IServerTask> _tasks;
 
         public TaskPool(int size)
         {
-            this._workers = new LinkedList<Thread>();
+
+            this._workers = new List<Thread>();
+            _tasks = new BlockingCollection<IServerTask>();
+
             for (var i = 0; i < size; ++i)
             {
                 var worker = new Thread(this.Worker) { Name = string.Concat("Worker ", i) };
                 worker.Start();
-                this._workers.AddLast(worker);
+                _workers.Add(worker);
             }
         }
 
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    _tasks.CompleteAdding();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources. 
+        // ~FiestaProcessingQueue() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
         public void Dispose()
         {
-            var waitForThreads = false;
-            lock (this._tasks)
-            {
-                if (!this._disposed)
-                {
-                    GC.SuppressFinalize(this);
-
-                    this._disallowAdd = true; // wait for all tasks to finish processing while not allowing any more new tasks
-                    while (this._tasks.Count > 0)
-                    {
-                        Monitor.Wait(this._tasks);
-                    }
-
-                    this._disposed = true;
-                    Monitor.PulseAll(this._tasks); // wake all workers (none of them will be active at this point; disposed flag will cause then to finish so that we can join them)
-                    waitForThreads = true;
-                }
-            }
-            if (waitForThreads)
-            {
-
-                foreach (var worker in this._workers)
-                {
-                    worker.Join();
-                }
-            }
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
         }
+        #endregion
+
 
         public void QueueTask(IServerTask task)
         {
-            lock (_tasks)
-            {
-                if (_disallowAdd)
-                {
-                    throw new InvalidOperationException(
-                        "This Pool instance is in the process of being disposed, can't add anymore");
-                }
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("This Pool instance has already been disposed");
-                }
-                task.InvokeOnEnter((GameTime)DateTime.Now);
-                _tasks.AddLast(task);
-                Monitor.PulseAll(_tasks); // pulse because tasks count changed
-            }
+            _tasks.Add(task);
         }
-        bool UpdateServerTask(IServerTask task, GameTime TimeNow)
+        async Task<bool> UpdateServerTask(IServerTask task,GameTime TimeNow)
         {
-            if (task.Update(TimeNow))
+            if (await Task.FromResult(task.Update(TimeNow)))
             {
 
                 task.LastUpdate = TimeNow;
 
-                return (true);
+                return true;
             }
             return false;
         }
@@ -99,10 +94,10 @@ namespace DragonWar.Utils.ServerTask
                 ServerMainBase.InternalInstance.TotalUpTime += elapsed;
                 ServerMainBase.InternalInstance.CurrentTime = TimeNow;
 
-                int mm = (int)TimeNow.Subtract(task.LastUpdate).TotalMilliseconds;
+
                 if (TimeNow.Subtract(task.LastUpdate).TotalMilliseconds >= (int)task.Intervall)
                 {
-                        bool Res = await Task.Run(() => UpdateServerTask(task, TimeNow));
+                        bool Res = await UpdateServerTask(task, TimeNow);
 
                         if (!Res)
                         {
@@ -127,50 +122,22 @@ namespace DragonWar.Utils.ServerTask
         }
         private async void Worker()
         {
-            IServerTask task = null;
-            DateTime lastUpdate = DateTime.Now;
-
-            while (true) // loop until threadpool is disposed
+            try
             {
-                lock (this._tasks) // finding a task needs to be atomic
+                while (!_tasks.IsCompleted)
                 {
-                    while (true) // wait for our turn in _workers queue and an available task
+                    IServerTask mTask = _tasks.Take();
+                    if (await UpdateTaskMain(mTask, DateTime.Now))
                     {
-                        if (this._disposed)
-                        {
-                            return;
-                        }
-                        if (null != _workers.First && ReferenceEquals(Thread.CurrentThread, _workers.First.Value) &&
-                            _tasks.Count > 0)
-                        // we can only claim a task if its our turn (this worker thread is the first entry in _worker queue) and there is a task available
-                        {
-                            task = _tasks.First.Value;
-                            _tasks.RemoveFirst();
-                            _workers.RemoveFirst();
-                            Monitor.PulseAll(_tasks);
-                            // pulse because current (First) worker changed (so that next available sleeping worker will pick up its task)
-                            break; // we found a task to process, break out from the above 'while (true)' loop
-                        }
-                        Monitor.Wait(_tasks); // go to sleep, either not our turn or no task to process
+                        _tasks.Add(mTask);
+
+                        await Task.Delay(50);
                     }
                 }
-
-
-                Thread.Sleep(1);
-
-
-                bool Res = await Task.Run(() => UpdateTaskMain(task, lastUpdate));
-
-               
-                lock (this._tasks)
-                {
-                    if (Res)
-                    {
-                        _tasks.AddLast(task);
-                        Monitor.PulseAll(_tasks);
-                    }
-                    this._workers.AddLast(Thread.CurrentThread);
-                }
+            }
+            catch (InvalidOperationException)
+            {
+                SocketLog.Write(SocketLogLevel.Startup, "no more work to do, shutting thread down");
             }
         }
     }

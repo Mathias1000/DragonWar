@@ -56,14 +56,11 @@
     <Compile Include="Config\MatchServerConfiguration.cs" />
     <Compile Include="Core\ServerMain.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Network\Match.cs" />
-    <Compile Include="Network\MatchPool.cs" />
-    <Compile Include="Network\Packet\GamePacket.cs" />
-    <Compile Include="Network\Packet\Proccesing\DragonWarProccessingInfo.cs" />
-    <Compile Include="Network\Packet\Proccesing\DragonWarProcessingQueue.cs" />
-    <Compile Include="Network\ServiceSession.cs" />
+    <Compile Include="Game\Match.cs" />
+    <Compile Include="Game\MatchPool.cs" />
+    <Compile Include="InternNetwork\Handler\ProtocolHandler.cs" />
     <Compile Include="ServerConsole\Title\MatchServerTitle.cs" />
-    <Compile Include="ServiceClient.cs" />
+    <Compile Include="InternNetwork\ServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DragonWar.Game\DragonWar.Game.csproj">
+      <Project>{BCF52880-B066-4557-97AF-EDF3CA7432B4}</Project>
+      <Name>DragonWar.Game</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DragonWar.Networking\DragonWar.Networking.csproj">
       <Project>{025bfd4b-c69d-4ac5-9481-32f29096c865}</Project>
       <Name>DragonWar.Networking</Name>
@@ -102,7 +103,9 @@
       <Name>DragonWar.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Network\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

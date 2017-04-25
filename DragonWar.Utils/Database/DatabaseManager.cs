@@ -23,6 +23,7 @@ public class DatabaseManager : mServerTask
     {
         mServer = null;
         mDatabase = null;
+      
     }
     public int ClientCount
     {

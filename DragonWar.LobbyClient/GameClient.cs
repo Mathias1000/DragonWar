@@ -108,7 +108,7 @@ public class GameClient
         ThreadPool.QueueTask(mTask);
     }
 
-   /*
+   
     public bool ConnectToServer()
     {
         try
@@ -117,12 +117,12 @@ public class GameClient
             {
                 MSession = new LobbySession(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
 
-                MSession.PacketProcessor.StartWorkerThreads(1);//Hmm Use Cpu Count?
+               
 
+                MSession.TryConnectToLogin(LobbyClientConfiguration.Instance.ConnectInfo.ConnectIP, LobbyClientConfiguration.Instance.ConnectInfo.ConnectPort);
+                MSession.StartRecv();
 
-                MSession.Socket.Connect(LobbyClientConfiguration.Instance.ConnectInfo.ConnectIP, LobbyClientConfiguration.Instance.ConnectInfo.ConnectPort);
-                MSession.Start();
-                if (MSession.Socket.Connected)
+                if (MSession.IsConnected)
                 {
 
                     return true;
@@ -135,7 +135,7 @@ public class GameClient
             return false;
         }
 
-    }*/
+    }
 
     [DllImport("Kernel32")]
     public static extern void AllocConsole();

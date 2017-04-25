@@ -1,5 +1,6 @@
 ﻿using DragonWar.Networking.Network.Processing;
 using DragonWar.Networking.Packet;
+using DragonWar.Networking.Packet.Lobby.Protocol;
 using DragonWar.Networking.Store;
 using System;
 using System.Net.Sockets;
@@ -9,6 +10,8 @@ namespace DragonWar.Networking.Network.TCP.Client
     public class LobbyClientBase : ClientBase
     {
         public event Action<DataProcessingInfo<LobbyClientBase,LobbyPacket>> NewProcessingInfo;
+
+        public ushort HandShakeKey = 0;
 
         public LobbyClientBase(Socket mSocket) : base(mSocket)
         {
@@ -47,7 +50,7 @@ namespace DragonWar.Networking.Network.TCP.Client
             LobbyHandlerStore.Instance.HandlePacket(Packet as dynamic, this);
         }
 
-        protected virtual void SendPacket(ServicePacket pPacket)
+        public void SendPacket(LobbyPacket pPacket)
         {
             if (!pPacket.Read().GetType().IsSerializable)
             {
@@ -57,5 +60,7 @@ namespace DragonWar.Networking.Network.TCP.Client
 
             Send(pPacket.Write());
         }
+
+  
     }
 }

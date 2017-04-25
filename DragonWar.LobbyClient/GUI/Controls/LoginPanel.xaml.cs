@@ -78,8 +78,8 @@ namespace DragonWar.LobbyClient.GUI.Controls
         }
         private void LoginAck()
         {
-         //   GameClient.Instance.ConnectToServer();
-            MessageBox.Show("Password" + PasswordInput.Password+"\nName " + AccountInput.Text);
+            GameClient.Instance.ConnectToServer();
+       
            
         }
 

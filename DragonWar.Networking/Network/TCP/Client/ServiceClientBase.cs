@@ -45,7 +45,7 @@ namespace DragonWar.Networking.Network.TCP.Client
 
         public override void HandlePacket<T>(T Packet) 
         {
-            ServiceHandlerStore.Instance.HandlePacket(Packet as dynamic, this);
+            ServiceHandlerStore.Instance.HandlePacket(Packet as ServicePacket, this);
         }
  
 

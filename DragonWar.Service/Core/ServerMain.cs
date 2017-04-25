@@ -36,7 +36,7 @@ namespace DragonWar.Service.Core
         {
             InternalInstance = new ServerMain();
             InternalInstance.WriteConsoleLogo();
-            new ServiceServer("0.0.0.0", 900,1).Start();
+
             if (!ServiceConfiguration.Initialize())
             {
                 throw new StartupException("Invalid Load ServiceConfiguration");

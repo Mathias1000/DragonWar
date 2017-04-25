@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using DragonWar.Networking.Packet;
 using DragonWar.Networking.Network.Processing;
+using DragonWar.Networking.Packet.Lobby.Protocol;
+using DragonWar.Networking.Packet.Lobby.Server;
 
 namespace DragonWar.Networking.Network.TCP.Server
 {
@@ -28,6 +30,31 @@ namespace DragonWar.Networking.Network.TCP.Server
         public virtual void Stop()
         {
             ProcessingQueue.Stop();
+        }
+
+
+        protected void SendVerfiryConnectPacket(LobbyClientBase Session,bool SendingFull)
+        {
+            if(!SendingFull)
+            {
+                ServerStatusPacket Full = new ServerStatusPacket
+                {
+                     State = ServerState.Full,
+                };
+                Session.SendPacket(Full);
+
+            }
+            else
+            {
+                LobbyHandShake mHandshake = new LobbyHandShake
+                {
+                    Key = LobbyHandShake.GenKey(),
+                };
+
+                Session.HandShakeKey = mHandshake.Key;
+
+                Session.SendPacket(mHandshake);
+            }
         }
     }
 }

@@ -46,7 +46,14 @@
     <Compile Include="Accounts\Account_Details.cs" />
     <Compile Include="Player\PlayerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\MatchServerInfo.cs" />
     <Compile Include="Server\ServerState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DragonWar.Utils\DragonWar.Utils.csproj">
+      <Project>{846a1515-d001-430c-9205-647de5633072}</Project>
+      <Name>DragonWar.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

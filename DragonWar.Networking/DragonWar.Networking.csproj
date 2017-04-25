@@ -43,8 +43,12 @@
   <ItemGroup>
     <Compile Include="Attribute\LobbyHandlerAttribute.cs" />
     <Compile Include="Attribute\ServiceHandlerAttribute.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Network\TCP\Client\ClientBase.cs" />
     <Compile Include="Network\TCP\Client\LobbyClientBase.cs" />
+    <Compile Include="Network\TCP\Client\LobbySessionManagerBase.cs" />
+    <Compile Include="Network\TCP\Client\ServiceSessionManagerBase.cs" />
+    <Compile Include="Network\TCP\Client\SessionManagerBase.cs" />
     <Compile Include="Network\TCP\DataRecievedEventArgs.cs" />
     <Compile Include="Network\TCP\Client\ServiceClientBase.cs" />
     <Compile Include="Network\TCP\Server\LobbyServerBase.cs" />
@@ -62,11 +66,16 @@
     <Compile Include="Packet\Lobby\Protocol\LobbyHandShake.cs" />
     <Compile Include="Packet\Lobby\Types\ServerStatusTypes.cs" />
     <Compile Include="Packet\Service\Authentication\Auth_ACK.cs" />
+    <Compile Include="Packet\Service\Authentication\Auth_RES.cs" />
+    <Compile Include="Packet\Service\Authentication\Auth_SERVER_INFO.cs" />
+    <Compile Include="Packet\Service\Match\START_MATCH.cs" />
+    <Compile Include="Packet\Service\Match\STOP_MATCH.cs" />
     <Compile Include="Packet\Service\Ser viceHeaderTypes.cs" />
     <Compile Include="Packet\Lobby\LobbyPacket.cs" />
     <Compile Include="Packet\PacketExtension.cs" />
     <Compile Include="Packet\Service\ServicePacket.cs" />
     <Compile Include="Packet\Service\Types\ConnectionTypes.cs" />
+    <Compile Include="Packet\Service\Types\MatchTypes.cs" />
     <Compile Include="Store\LobbyHandlerStore.cs" />
     <Compile Include="Store\ServiceHandlerStore.cs" />
     <Compile Include="NetworkReflector.cs" />
@@ -84,6 +93,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Network\UDP\" />
     <Folder Include="Packet\Lobby\Authentication\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

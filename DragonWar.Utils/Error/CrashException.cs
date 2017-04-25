@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-
+[Serializable]
 public class CrashException : Exception
 {
     public CrashException() { }

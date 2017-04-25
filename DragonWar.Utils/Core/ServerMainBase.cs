@@ -45,6 +45,7 @@ namespace DragonWar.Utils.Core
         {
             Assembly.Load(@"DragonWar.Utils");
             Assembly.Load(@"DragonWar.Game");
+            Assembly.Load(@"DragonWar.Networking");
         }
         public void WriteConsoleLogo()
         {

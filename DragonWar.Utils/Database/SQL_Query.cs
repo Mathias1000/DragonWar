@@ -6,11 +6,11 @@ namespace DragonWar.Utils.Database
 {
     public sealed class SQL_Query : mServerTask
     {
-        public SqlCommand pCmd { get; private set; }
+        public SqlCommand Cmd { get; private set; }
 
         public SQL_Query(SqlCommand cmd)
         {
-            pCmd = cmd;
+            Cmd = cmd;
             OnLeave += SQL_Query_OnLeave;
         }
 
@@ -20,12 +20,12 @@ namespace DragonWar.Utils.Database
             {
                 try
                 {
-                    pClient.ExecuteNonQuery(pCmd);
+                    pClient.ExecuteNonQuery(Cmd);
 
                 }
                 catch (SqlException ex)
                 {
-                    DatabaseLog.Write(DatabaseLogLevel.Error, "Failed to Execute Query {0} {1}", pCmd.CommandText, ex.Message);
+                    DatabaseLog.Write(DatabaseLogLevel.Error, "Failed to Execute Query {0} {1}", Cmd.CommandText, ex.Message);
                 }
 
             }

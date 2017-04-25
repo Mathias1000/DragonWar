@@ -14,7 +14,7 @@ namespace DragonWar.LobbyClient.Network.Handlers
         [LobbyHandler((byte)ProtocolTypes.Handshake)]
         public static void HandleServerHandshake(LobbySession mSession, LobbyHandShake mPacket)
         {
-            GameClient.Instance.InvokeHandshake(mPacket.EncrypPos);
+            GameClient.Instance.InvokeHandshake(mPacket.Key);
         }
     }
 }

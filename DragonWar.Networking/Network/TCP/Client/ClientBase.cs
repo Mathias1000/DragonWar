@@ -13,7 +13,9 @@ namespace DragonWar.Networking.Network.TCP.Client
         private TCPSendCallBack SendCallBack;
 
         private Socket mSocket;
+        public ushort SessiondId { get; set; } = 0;
 
+        public bool IsConnected { get { return mSocket != null && mSocket.Connected; } }
 
         public ClientBase(Socket mSocket)
         {
